@@ -35,11 +35,12 @@ RUN tools/create-stack-user.sh && \
 	chown -R stack:stack /github
 
 RUN usermod -aG sudo stack
+RUN chmod 4755 /usr/bin/sudo
 
 USER stack
 
 COPY localrc /github/devstack/
-COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 22 80 443
 
