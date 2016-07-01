@@ -1,4 +1,5 @@
-FROM debian:jessie
+#FROM debian:jessie
+FROM ubuntu:14.04
 
 # policy-rc.d likes to block devstack 
 RUN perl -pi -w -e 's/101/0/g;' /usr/sbin/policy-rc.d 
@@ -33,10 +34,12 @@ WORKDIR /github/devstack
 RUN tools/create-stack-user.sh && \
 	chown -R stack:stack /github
 
+RUN usermod -aG sudo stack
+
 USER stack
 
 COPY localrc /github/devstack/
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 EXPOSE 22 80 443
 
