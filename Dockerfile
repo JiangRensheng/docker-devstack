@@ -38,6 +38,10 @@ RUN usermod -aG sudo stack
 RUN chmod 4755 /usr/bin/sudo
 RUN chmod 777 /tmp
 
+RUN echo "#!/bin/bash" >  /etc/init.d/cgroup-lite
+RUN echo "#!/bin/bash" >  /etc/init.d/systemd-logind
+RUN chmod +x /etc/init.d/cgroup-lite /etc/init.d/systemd-logind
+
 USER stack
 
 COPY localrc /github/devstack/
