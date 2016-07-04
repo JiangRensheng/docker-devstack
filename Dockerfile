@@ -36,6 +36,7 @@ RUN tools/create-stack-user.sh && \
 
 RUN usermod -aG sudo stack
 RUN chmod 4755 /usr/bin/sudo
+RUN chmod 777 /tmp
 
 USER stack
 
